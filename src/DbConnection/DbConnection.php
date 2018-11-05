@@ -9,6 +9,8 @@
 namespace src\DbConnection;
 
 
+use Illuminate\Database\Capsule\Manager;
+
 class DbConnection
 {
 
@@ -18,14 +20,24 @@ class DbConnection
     //Attempt the db connection
     //If fails, throw an exception
     public static function connect($session){
-//        $capsule = new \Illuminate\Database\Capsule\Manager;
-//        $capsule->addConnection($container['settings']['db']);
-//        $capsule->setAsGlobal();
-//        $capsule->bootEloquent();
-//        return $capsule;
+        $capsule = new Manager();
+        $capsule->addConnection( [
+            'driver' => 'mysql',
+            'host' => '',
+            'database' => '',
+            'username' => '',
+            'password' => '',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => getenv('DB_PREFIX'),
+        ]);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
+        return $capsule;
     }
 
-    public static function readDbStructure(){
+    public static function readDbStructure(){}
 
-    }
+    public static function massInsert(){}
+
 }

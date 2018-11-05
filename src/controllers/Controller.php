@@ -9,11 +9,15 @@
 namespace src\controllers;
 
 use Slim\Http\Request;
+use src\session\Session;
 
 class Controller
 {
+    private $session;
+
     public function __construct()
     {
+        $this->session = Session::getInstance();
         //grab session,
         //if the session has a successful db connection
         // add to global slim object
