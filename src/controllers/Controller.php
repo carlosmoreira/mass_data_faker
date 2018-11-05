@@ -14,6 +14,9 @@ class Controller
 {
     public function __construct()
     {
-        //@todo: Set Request
+        //grab session,
+        //if the session has a successful db connection
+        // add to global slim object
+        //Or just bootup eloquent
     }
 }
