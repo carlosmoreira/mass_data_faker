@@ -22,6 +22,12 @@ class FakerController extends Controller
 
         //We will store the credentials in the session
 
+        //After saving to session, we will attempt a db connection
+
+        //If good no exception will be thrown
+
+        //
+
         //We wil return an object that corresponds to the db structure
 
 //        {
