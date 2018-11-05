@@ -1,4 +1,4 @@
 
 # To Run:
 
-php composer.phar starts
+composer start
