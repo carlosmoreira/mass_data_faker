@@ -14,6 +14,9 @@ class DbConnection
 
     private static $capsule;
 
+    //Create array needed to connect
+    //Attempt the db connection
+    //If fails, throw an exception
     public static function connect($session){
 //        $capsule = new \Illuminate\Database\Capsule\Manager;
 //        $capsule->addConnection($container['settings']['db']);
@@ -25,6 +28,4 @@ class DbConnection
     public static function readDbStructure(){
 
     }
-
-
 }
