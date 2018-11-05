@@ -16,9 +16,4 @@ class Controller
     {
         //@todo: Set Request
     }
-
-    public function convertToDTO(Request $request, $class){
-        //return new $class;
-    }
-
 }
