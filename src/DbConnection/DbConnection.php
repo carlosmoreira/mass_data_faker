@@ -10,6 +10,7 @@ namespace src\DbConnection;
 
 
 use Illuminate\Database\Capsule\Manager;
+use src\models\SqlTables\SqlProperty;
 use src\session\Session;
 
 class DbConnection
@@ -56,16 +57,29 @@ class DbConnection
 
     }
 
+    /**
+     * @return array
+     */
     public static function readDbStructure()
     {
+        $sqlDataProperties = [];
         $dbName = self::$session->db_databaseName;
         $rawQuery = "select * from information_schema.columns
                     where table_schema = '{$dbName}'
                     order by table_name,ordinal_position";
         $results = self::$capsule->getConnection()->getPdo()->query($rawQuery)->fetchAll();
-        //$results = Capsul::select('select * from users where id = ?', array(1));
-        var_dump($results);
-        die();
+
+        if ($results) {
+            foreach ($results as $result) {
+                $sqlDataPropertie = new SqlProperty();
+                $sqlDataPropertie->name = $result['COLUMN_NAME'];
+                $sqlDataPropertie->characterMaximumLength = $result['CHARACTER_MAXIMUM_LENGTH'];
+                $sqlDataPropertie->dataType = $result['DATA_TYPE'];
+                $sqlDataPropertie->isNullable = $result['IS_NULLABLE'];
+                $sqlDataProperties[] = $sqlDataPropertie;
+            }
+        }
+        return $sqlDataProperties;
     }
 
     public static function massInsert()
