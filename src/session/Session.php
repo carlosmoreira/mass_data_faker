@@ -7,10 +7,10 @@ class Session
 {
     CONST SESSION_NAME = 'mass_data_faker';
 
-    private $db_host;
-    private $db_databaseName;
-    private $db_username;
-    private $db_password;
+    public $db_host;
+    public $db_databaseName;
+    public $db_username;
+    public $db_password;
 
     /**
      * @var Session $instance

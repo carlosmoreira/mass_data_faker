@@ -9,16 +9,37 @@
 namespace src\controllers;
 
 use Slim\Http\Request;
+use src\DbConnection\DbConnection;
 
 class FakerController extends Controller
 {
 
-    public function read(Request $request){
+    public function read(Request $request)
+    {
         /**
          * What do we need?
          *  - Db Name, User, Password (Credentials)
          *  - Db Type
          */
+
+        //@todo: Grab properties from request instead of manual
+
+
+        $this->session->db_host = $dbHost;
+        $this->session->db_username = $dbUserName;
+        $this->session->db_databaseName = $dbName;
+        $this->session->db_password = $dbPassword;
+        $this->session->save();
+
+        $connected = DbConnection::connect($this->session);
+
+        if ($connected)
+            $structure = DbConnection::readDbStructure();
+        else
+            throw new \Exception("Unable to connect to DB");
+
+        var_dump($structure);
+
 
         //We will store the credentials in the session
 
@@ -38,7 +59,8 @@ class FakerController extends Controller
     }
 
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         /**
          * What do we need?
          *  - Table Name

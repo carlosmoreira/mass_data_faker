@@ -13,7 +13,7 @@ use src\session\Session;
 
 class Controller
 {
-    private $session;
+    protected $session;
 
     public function __construct()
     {
