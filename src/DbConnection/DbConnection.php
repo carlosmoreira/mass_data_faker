@@ -10,6 +10,7 @@ namespace src\DbConnection;
 
 
 use Illuminate\Database\Capsule\Manager;
+use src\models\SqlTables\GenerateSqlTableStructure;
 use src\models\SqlTables\SqlProperty;
 use src\session\Session;
 
@@ -68,16 +69,8 @@ class DbConnection
                     where table_schema = '{$dbName}'
                     order by table_name,ordinal_position";
         $results = self::$capsule->getConnection()->getPdo()->query($rawQuery)->fetchAll();
-
         if ($results) {
-            foreach ($results as $result) {
-                $sqlDataPropertie = new SqlProperty();
-                $sqlDataPropertie->name = $result['COLUMN_NAME'];
-                $sqlDataPropertie->characterMaximumLength = $result['CHARACTER_MAXIMUM_LENGTH'];
-                $sqlDataPropertie->dataType = $result['DATA_TYPE'];
-                $sqlDataPropertie->isNullable = $result['IS_NULLABLE'];
-                $sqlDataProperties[] = $sqlDataPropertie;
-            }
+            $sqlDataProperties = GenerateSqlTableStructure::createSqlTableStructures($results);
         }
         return $sqlDataProperties;
     }
