@@ -32,22 +32,6 @@ class FakerController extends Controller
 
 
         echo json_encode($structure);
-
-        //We will store the credentials in the session
-
-        //After saving to session, we will attempt a db connection
-
-        //If good no exception will be thrown
-
-        //
-
-        //We wil return an object that corresponds to the db structure
-
-//        {
-//            Tables : [
-//                'column1' : 'type'
-//            ]
-//        }
     }
 
 
