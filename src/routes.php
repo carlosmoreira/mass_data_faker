@@ -3,7 +3,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-$app->get(
-'/',
+$app->post(
+'/readDatabase',
     \src\controllers\FakerController::class . ':read'
 );

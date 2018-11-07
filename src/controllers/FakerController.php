@@ -22,24 +22,22 @@ class FakerController extends Controller
          *  - Db Type
          */
 
-        //@todo: Grab properties from request instead of manual
 
-
-        $this->session->db_host = $dbHost;
-        $this->session->db_username = $dbUserName;
-        $this->session->db_databaseName = $dbName;
-        $this->session->db_password = $dbPassword;
-        $this->session->save();
+        $this->session->db_host = $request->getParsedBodyParam("host");
+        $this->session->db_username = $request->getParsedBodyParam("dbUserName");
+        $this->session->db_databaseName = $request->getParsedBodyParam("dbName");
+        $this->session->db_password = $request->getParsedBodyParam("dbPassword");
 
         $connected = DbConnection::connect($this->session);
 
-        if ($connected)
+        if ($connected) {
+            $this->session->save();
             $structure = DbConnection::readDbStructure();
-        else
+        } else
             throw new \Exception("Unable to connect to DB");
 
-        var_dump($structure);
 
+        echo json_encode($structure);
 
         //We will store the credentials in the session
 
