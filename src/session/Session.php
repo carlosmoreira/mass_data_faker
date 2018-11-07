@@ -7,6 +7,7 @@ class Session
 {
     CONST SESSION_NAME = 'mass_data_faker';
 
+    public $db_type;
     public $db_host;
     public $db_databaseName;
     public $db_username;

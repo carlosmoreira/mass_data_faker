@@ -16,13 +16,7 @@ class FakerController extends Controller
 
     public function read(Request $request)
     {
-        /**
-         * What do we need?
-         *  - Db Name, User, Password (Credentials)
-         *  - Db Type
-         */
-
-
+        $this->session->db_type = $request->getParsedBodyParam("dbType");
         $this->session->db_host = $request->getParsedBodyParam("host");
         $this->session->db_username = $request->getParsedBodyParam("dbUserName");
         $this->session->db_databaseName = $request->getParsedBodyParam("dbName");

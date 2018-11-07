@@ -8,11 +8,13 @@
 
 namespace src\controllers;
 
-use Slim\Http\Request;
 use src\session\Session;
 
 class Controller
 {
+    /**
+     * @var Session $session
+     */
     protected $session;
 
     public function __construct()
