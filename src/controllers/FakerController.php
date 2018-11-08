@@ -37,6 +37,22 @@ class FakerController extends Controller
 
     public function create(Request $request)
     {
+//        {
+//            table : "TableName",
+//            columns : [
+//                {
+//                    name : "first_name",
+//                    fakerType : "firstName"
+//                }
+//            ]
+//        }
+
+        /**
+         * Need to check all possible solutions for faker.
+         *
+         * //Grab a library to turn a request payload into an object
+         */
+
         /**
          * What do we need?
          *  - Table Name
