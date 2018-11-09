@@ -10,6 +10,7 @@ namespace src\DbConnection;
 
 
 use Illuminate\Database\Capsule\Manager;
+use src\Helpes\FakerValueHelper;
 use src\models\Request\DbConnectionPropertiesRequest;
 use src\models\Request\InsertToTableRequests;
 use src\models\SqlTables\GenerateSqlTableStructure;
@@ -79,11 +80,12 @@ class DbConnection
     public static function massInsert(InsertToTableRequests $insertToTableRequests)
     {
         $model = new TempModel();
-        $model->overideTableName("chapters");
+        $model->overideTableName($insertToTableRequests->tableName);
+
         //Iterate through all columns, appending the props and values;
-        $model->book_id = 2;
-        $model->name = "name";
-        $model->page = 1;
+        foreach ($insertToTableRequests->columns as $property) {
+            $model->{$property->columnName} = FakerValueHelper::createValue($property->fakerType);
+        }
 
         $model->save();
 
