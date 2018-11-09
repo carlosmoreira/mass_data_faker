@@ -20,7 +20,7 @@ class FakerValueHelperTest extends BaseTestCase
         $this->assertNotEmpty($formatters);
     }
 
-    public function testFormattersAreLinkedToLibraryProperties()
+    public function testFormattersCanCreateValues()
     {
         $formatters = FakerValueHelper::getFormatters();
         $faker = Factory::create();
