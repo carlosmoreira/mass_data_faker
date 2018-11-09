@@ -9,13 +9,28 @@
 namespace Tests\Functional;
 
 
+use Faker\Factory;
 use src\Helpes\FakerValueHelper;
 
 class FakerValueHelperTest extends BaseTestCase
 {
-    public function testFakerHelperHasFormatters(){
+    public function testFakerHelperHasFormatters()
+    {
         $formatters = FakerValueHelper::getFormatters();
-
         $this->assertNotEmpty($formatters);
+    }
+
+    public function testFormattersAreLinkedToLibraryProperties()
+    {
+        $formatters = FakerValueHelper::getFormatters();
+        $faker = Factory::create();
+
+        foreach ($formatters as $formatter) {
+            foreach ($formatter as $property) {
+
+                $this->assertNotNull($faker->{$property}, "{$property} came back as null");
+                $this->assertNotEmpty($faker->{$property});
+            }
+        }
     }
 }
