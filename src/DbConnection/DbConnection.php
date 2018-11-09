@@ -87,6 +87,9 @@ class DbConnection
             $model->{$property->columnName} = FakerValueHelper::createValue($property->fakerType);
         }
 
+        /**
+         * @todo:Check if saved otherwise throw exception
+         */
         $model->save();
 
     }
