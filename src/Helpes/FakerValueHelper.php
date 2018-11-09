@@ -9,10 +9,56 @@
 namespace src\Helpes;
 
 
+use Faker\Factory as FakerFactory;
+
 class FakerValueHelper
 {
 
-    public static function createValue($type){
-        return "";
+    public static function createValue($type)
+    {
+        $faker = FakerFactory::create();
+
+    }
+
+    //Create a unit test for this that loops through all values and confirm a property can be created.
+
+    /**
+     * Retrieves all possible properties of faker | separated by sections
+     * @return array
+     */
+    public static function getFormatters()
+    {
+        return [
+            'base' => [
+                'randomDigit',
+                'randomDigitNotNull',
+            ],
+            'person' => [
+                'title',
+                'titleMale',
+                'titleFemale',
+                'suffix',
+                'name',
+                'firstName',
+                'firstNameMale',
+                'firstNameFemale',
+                'lastName'
+            ],
+            'lorem' => [],
+            'address' => [],
+            'phoneNumber' => [],
+            'company' => [],
+            'text' => [],
+            'datetime' => [],
+            'internet' => [],
+            'userAgent' => [],
+            'payment' => [],
+            'color' => [],
+            'file' => [],
+            'image' => [],
+            'uuid' => [],
+            'barCode' => [],
+            'miscellaneous' => [],
+        ];
     }
 }
