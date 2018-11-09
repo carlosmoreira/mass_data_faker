@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Model;
 class TempModel extends Model
 {
 
+    public $timestamps = false;
+
+
     public function overideTableName($tableName)
     {
         $this->table = $tableName;

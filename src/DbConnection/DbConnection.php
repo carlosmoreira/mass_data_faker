@@ -13,6 +13,7 @@ use Illuminate\Database\Capsule\Manager;
 use src\models\Request\DbConnectionPropertiesRequest;
 use src\models\Request\InsertToTableRequests;
 use src\models\SqlTables\GenerateSqlTableStructure;
+use src\models\TempModel;
 
 class DbConnection
 {
@@ -77,7 +78,15 @@ class DbConnection
 
     public static function massInsert(InsertToTableRequests $insertToTableRequests)
     {
-        
+        $model = new TempModel();
+        $model->overideTableName("chapters");
+        //Iterate through all columns, appending the props and values;
+        $model->book_id = 2;
+        $model->name = "name";
+        $model->page = 1;
+
+        $model->save();
+
     }
 
 }

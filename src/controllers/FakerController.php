@@ -44,11 +44,13 @@ class FakerController extends Controller
 
         if ($connected) {
             DbConnection::massInsert($insertToTableRequest);
+            echo json_encode([
+                'success' => 'ok'
+            ]);
         } else {
             throw new \Exception('Unable to connect to your database');
         }
-
-
+        
         /**
          * When the db is created, pass back an array of faker types
          */
