@@ -10,6 +10,7 @@ namespace src\controllers;
 
 use Slim\Http\Request;
 use src\DbConnection\DbConnection;
+use src\models\Request\InsertToTableRequests;
 
 class FakerController extends Controller
 {
@@ -37,6 +38,12 @@ class FakerController extends Controller
 
     public function create(Request $request)
     {
+
+        $insertToTableRequest = new InsertToTableRequests($request);
+
+        var_dump($insertToTableRequest->tableName);
+
+
 //        {
 //            table : "TableName",
 //            columns : [

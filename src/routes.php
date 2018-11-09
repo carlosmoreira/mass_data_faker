@@ -7,3 +7,8 @@ $app->post(
 '/readDatabase',
     \src\controllers\FakerController::class . ':read'
 );
+
+$app->post(
+    '/create',
+    \src\controllers\FakerController::class . ':create'
+);
