@@ -10,20 +10,20 @@ namespace src\controllers;
 
 use Slim\Http\Request;
 use src\DbConnection\DbConnection;
+use src\models\Request\DbConnectionPropertiesRequest;
 use src\models\Request\InsertToTableRequests;
+use src\models\SqlTables\DbConnectionProperties;
 
 class FakerController extends Controller
 {
 
     public function read(Request $request)
     {
-        $this->session->db_type = $request->getParsedBodyParam("dbType");
-        $this->session->db_host = $request->getParsedBodyParam("host");
-        $this->session->db_username = $request->getParsedBodyParam("dbUserName");
-        $this->session->db_databaseName = $request->getParsedBodyParam("dbName");
-        $this->session->db_password = $request->getParsedBodyParam("dbPassword");
 
-        $connected = DbConnection::connect($this->session);
+        $dbConnectionPropertiesRequest = new DbConnectionPropertiesRequest($request);
+        $this->session->dbConnectionProperties = $dbConnectionPropertiesRequest;
+
+        $connected = DbConnection::connect($this->session->dbConnectionProperties);
 
         if ($connected) {
             $this->session->save();
@@ -38,33 +38,19 @@ class FakerController extends Controller
 
     public function create(Request $request)
     {
-
         $insertToTableRequest = new InsertToTableRequests($request);
 
-        var_dump($insertToTableRequest->tableName);
+        $connected = DbConnection::connect($this->session->dbConnectionProperties);
 
+        if ($connected) {
+            DbConnection::massInsert($insertToTableRequest);
+        } else {
+            throw new \Exception('Unable to connect to your database');
+        }
 
-//        {
-//            table : "TableName",
-//            columns : [
-//                {
-//                    name : "first_name",
-//                    fakerType : "firstName"
-//                }
-//            ]
-//        }
 
         /**
-         * Need to check all possible solutions for faker.
-         *
-         * //Grab a library to turn a request payload into an object
-         */
-
-        /**
-         * What do we need?
-         *  - Table Name
-         *  - Array of columns and (Faker Type Data) Ex: Date, Name, Address, etc ...
-         *
+         * When the db is created, pass back an array of faker types
          */
 
         /**

@@ -2,10 +2,16 @@
 
 namespace src\session;
 
+use src\models\Request\DbConnectionPropertiesRequest;
 
 class Session
 {
     CONST SESSION_NAME = 'mass_data_faker';
+
+    /**
+     * @var DbConnectionPropertiesRequest $dbConnectionProperties
+     */
+    public $dbConnectionProperties;
 
     public $db_type;
     public $db_host;

@@ -10,36 +10,36 @@ namespace src\DbConnection;
 
 
 use Illuminate\Database\Capsule\Manager;
+use src\models\Request\DbConnectionPropertiesRequest;
+use src\models\Request\InsertToTableRequests;
 use src\models\SqlTables\GenerateSqlTableStructure;
-use src\models\SqlTables\SqlProperty;
-use src\session\Session;
 
 class DbConnection
 {
-
     /**
      * @var Manager $capsule
      */
     private static $capsule;
 
     /**
-     * @var Session $session
+     * @var DbConnectionPropertiesRequest $dbConnectionPropertiesRequest
      */
-    private static $session;
+    private static $dbConnectionPropertiesRequest;
 
-    //Create array needed to connect
-    //Attempt the db connection
-    //If fails, throw an exception
-    public static function connect(Session $session)
+    /**
+     * @param DbConnectionPropertiesRequest $dbConnectionPropertiesRequest
+     * @return bool
+     */
+    public static function connect(DbConnectionPropertiesRequest $dbConnectionPropertiesRequest)
     {
         try {
             $capsule = new Manager();
             $capsule->addConnection([
                 'driver' => 'mysql',
-                'host' => $session->db_host,
-                'database' => $session->db_databaseName,
-                'username' => $session->db_username,
-                'password' => $session->db_password,
+                'host' => $dbConnectionPropertiesRequest->db_host,
+                'database' => $dbConnectionPropertiesRequest->db_databaseName,
+                'username' => $dbConnectionPropertiesRequest->db_username,
+                'password' => $dbConnectionPropertiesRequest->db_password,
                 'charset' => 'utf8',
                 'collation' => 'utf8_unicode_ci',
                 'prefix' => getenv('DB_PREFIX'),
@@ -48,7 +48,7 @@ class DbConnection
             $capsule->bootEloquent();
             if ($capsule->getConnection()->getPdo()) {
                 self::$capsule = $capsule;
-                self::$session = $session;
+                self::$dbConnectionPropertiesRequest = $dbConnectionPropertiesRequest;
                 return true;
             }
             return false;
@@ -64,7 +64,7 @@ class DbConnection
     public static function readDbStructure()
     {
         $sqlDataProperties = [];
-        $dbName = self::$session->db_databaseName;
+        $dbName = self::$dbConnectionPropertiesRequest->db_databaseName;
         $rawQuery = "select * from information_schema.columns
                     where table_schema = '{$dbName}'
                     order by table_name,ordinal_position";
@@ -75,8 +75,9 @@ class DbConnection
         return $sqlDataProperties;
     }
 
-    public static function massInsert()
+    public static function massInsert(InsertToTableRequests $insertToTableRequests)
     {
+        
     }
 
 }
