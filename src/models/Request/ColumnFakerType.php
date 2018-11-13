@@ -13,5 +13,7 @@ class ColumnFakerType
 {
     public $columnName;
 
+    public $value;
+
     public $fakerType;
 }
