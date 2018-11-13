@@ -17,7 +17,7 @@ class FakerValueHelper
     public static function createValue($type)
     {
         $faker = FakerFactory::create();
-
+        return $faker->$type;
     }
 
     //Create a unit test for this that loops through all values and confirm a property can be created.

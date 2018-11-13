@@ -84,7 +84,11 @@ class DbConnection
 
         //Iterate through all columns, appending the props and values;
         foreach ($insertToTableRequests->columns as $property) {
-            $model->{$property->columnName} = FakerValueHelper::createValue($property->fakerType);
+            if ($property->value) {
+                $model->{$property->columnName} = $property->value;
+            } else {
+                $model->{$property->columnName} = FakerValueHelper::createValue($property->fakerType);
+            }
         }
 
         /**
