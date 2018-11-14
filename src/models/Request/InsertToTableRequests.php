@@ -10,7 +10,6 @@ namespace src\models\Request;
 
 
 use Liuggio\Filler\HTTPPropertyTrait;
-use Slim\Http\Request;
 
 class InsertToTableRequests
 {
@@ -26,9 +25,4 @@ class InsertToTableRequests
      */
     public $columns;
 
-
-    public function __construct(Request $request)
-    {
-        $this->fillProperties($request->getParsedBody());
-    }
 }

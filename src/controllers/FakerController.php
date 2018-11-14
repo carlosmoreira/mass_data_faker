@@ -10,6 +10,7 @@ namespace src\controllers;
 
 use Slim\Http\Request;
 use src\DbConnection\DbConnection;
+use src\Helpes\JsonToObjectHelper;
 use src\models\Request\DbConnectionPropertiesRequest;
 use src\models\Request\InsertToTableRequests;
 use src\models\SqlTables\DbConnectionProperties;
@@ -38,7 +39,8 @@ class FakerController extends Controller
 
     public function create(Request $request)
     {
-        $insertToTableRequest = new InsertToTableRequests($request);
+
+        $insertToTableRequest = JsonToObjectHelper::Convert($request->getBody(), new InsertToTableRequests());
 
         $connected = DbConnection::connect($this->session->dbConnectionProperties);
 

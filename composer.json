@@ -18,7 +18,8 @@
         "monolog/monolog": "^1.17",
         "illuminate/database": "^5.7",
         "fzaninotto/faker": "^1.8",
-        "liuggio/filler-dto": "^0.1.0"
+        "liuggio/filler-dto": "^0.1.0",
+        "netresearch/jsonmapper": "^1.4"
     },
     "require-dev": {
         "phpunit/phpunit": ">=4.8 < 6.0"
