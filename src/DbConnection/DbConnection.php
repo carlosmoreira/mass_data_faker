@@ -37,7 +37,7 @@ class DbConnection
         try {
             $capsule = new Manager();
             $capsule->addConnection([
-                'driver' => 'mysql',
+                'driver' => $dbConnectionPropertiesRequest->db_type,// 'mysql' or 'sqlsrv'
                 'host' => $dbConnectionPropertiesRequest->db_host,
                 'database' => $dbConnectionPropertiesRequest->db_databaseName,
                 'username' => $dbConnectionPropertiesRequest->db_username,
@@ -61,15 +61,33 @@ class DbConnection
     }
 
     /**
-     * @return array
+     * @return array|\src\models\SqlTables\SqlTableStructure[]
+     * @throws \Exception
      */
     public static function readDbStructure()
     {
         $sqlDataProperties = [];
         $dbName = self::$dbConnectionPropertiesRequest->db_databaseName;
-        $rawQuery = "select * from information_schema.columns
+        switch (self::$dbConnectionPropertiesRequest->db_type) {
+            case 'mysql' :
+                $rawQuery = "select * from information_schema.columns
                     where table_schema = '{$dbName}'
                     order by table_name,ordinal_position";
+                break;
+            case 'sqlsrv' :
+                $rawQuery = "SELECT TABLE_SCHEMA ,
+                           TABLE_NAME ,
+                           COLUMN_NAME ,
+                           CHARACTER_MAXIMUM_LENGTH ,
+                           DATA_TYPE ,
+                           IS_NULLABLE
+                    FROM INFORMATION_SCHEMA.COLUMNS
+                    Where TABLE_CATALOG Like '{$dbName}'";
+                break;
+            default :
+                throw new \Exception('Incorrect Database type used. Must be mysql or sqlsrv');
+        }
+
         $results = self::$capsule->getConnection()->getPdo()->query($rawQuery)->fetchAll();
         if ($results) {
             $sqlDataProperties = GenerateSqlTableStructure::createSqlTableStructures($results);
