@@ -63,144 +63,208 @@
 <body>
 
 <div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <img src="img/logo.PNG" alt="">
+        </div>
+    </div>
     <form action="">
         <div class="form-group row">
-            <div class="col-md-2">
-                <label for="db_type">Database Type</label>
-                <select class="form-control" name="db_type" id="db_type">
-                    <option value="mysql">MySql</option>
-                    <option value="sql">SQL</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="host">Host</label>
-                <input class="form-control" type="text" id="host">
-            </div>
-            <div class="col-md-2">
-                <label for="username">Username</label>
-                <input class="form-control" type="text" id="username">
-            </div>
-            <div class="col-md-2">
-                <label for="password">Password</label>
-                <input class="form-control" type="text" id="password">
-            </div>
-            <div class="col-md-3">
-                <label for="database">Database</label>
-                <input class="form-control" type="text" id="database">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header text-center">Database Connection Information</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="db_type">Database Type</label>
+                                <select class="form-control" name="db_type" id="db_type">
+                                    <option value="mysql">MySql</option>
+                                    <option value="sql">SQL</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="host">Host</label>
+                                <input class="form-control" type="text" id="host">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="username">Username</label>
+                                <input class="form-control" type="text" id="username">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="password">Password</label>
+                                <input class="form-control" type="text" id="password">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="database">Database</label>
+                                <input class="form-control" type="text" id="database">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
     <div class="row">
         <div class="col-md-3">
-            <div class="just-padding">
+            <div class="card">
+                <div class="card-header text-center">Tables</div>
+                <div class="card-body">
 
-                <div class="list-group list-group-root well">
-                    <a href="#item-2" class="list-group-item" data-toggle="collapse">
-                        <i class="glyphicon glyphicon-chevron-right"></i>Table 1 (8)
-                    </a>
-                    <div class="list-group collapse" id="item-2">
+                    <div class="list-group list-group-root">
+                        <a href="#item-2" class="list-group-item" data-toggle="collapse">
+                            <i class="glyphicon glyphicon-chevron-right"></i>Table 1 (8)
+                        </a>
+                        <div class="list-group collapse" id="item-2">
 
-                        <div class="list-group-item pt-0 pb-0">
-                            <input type="checkbox" id="col1"> <label for="col1">Column 1 (PK)</label>
+                            <div class="list-group-item pt-0 pb-0">
+                                <input type="checkbox" id="col1"> <label for="col1">Column 1 (PK)</label>
+                            </div>
+
+                            <div class="list-group-item pt-0 pb-0">
+                                <input type="checkbox" id="col2"> <label for="col2">Column 2 <span class="text-info">(Nullable)</span></label>
+                            </div>
+
+                            <div class="list-group-item pt-0 pb-0">
+                                <input type="checkbox" id="col3"> <label for="col3">Column 3 <span class="text-danger">(Required)</span></label>
+                            </div>
+
+                            <div class="list-group-item pt-0 pb-0">
+                                <input type="checkbox" id="col4"> <label for="col4">Column 4</label>
+                            </div>
+
+                            <div class="list-group-item pt-0 pb-0">
+                                <input type="checkbox" id="col5"> <label for="col5">Column 5</label>
+                            </div>
+
+                            <div class="list-group-item pt-0 pb-0">
+                                <input type="checkbox" id="col6"> <label for="col6">Column 6</label>
+                            </div>
+
+                            <div class="list-group-item pt-0 pb-0">
+                                <input type="checkbox" id="col7"> <label for="col7">Column 7</label>
+                            </div>
+
+                            <div class="list-group-item pt-0 pb-0">
+                                <input type="checkbox" id="col8"> <label for="col8">Column 8</label>
+                            </div>
+
                         </div>
-
-                        <div class="list-group-item pt-0 pb-0">
-                            <input type="checkbox" id="col2"> <label for="col2">Column 2 <span class="text-info">(Nullable)</span></label>
-                        </div>
-
-                        <div class="list-group-item pt-0 pb-0">
-                            <input type="checkbox" id="col3"> <label for="col3">Column 3 <span class="text-danger">(Required)</span></label>
-                        </div>
-
-                        <div class="list-group-item pt-0 pb-0">
-                            <input type="checkbox" id="col4"> <label for="col4">Column 4</label>
-                        </div>
-
-                        <div class="list-group-item pt-0 pb-0">
-                            <input type="checkbox" id="col5"> <label for="col5">Column 5</label>
-                        </div>
-
-                        <div class="list-group-item pt-0 pb-0">
-                            <input type="checkbox" id="col6"> <label for="col6">Column 6</label>
-                        </div>
-
-                        <div class="list-group-item pt-0 pb-0">
-                            <input type="checkbox" id="col7"> <label for="col7">Column 7</label>
-                        </div>
-
-                        <div class="list-group-item pt-0 pb-0">
-                            <input type="checkbox" id="col8"> <label for="col8">Column 8</label>
-                        </div>
-
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
         <div class="col-md-9">
 
-            <div class="d-flex justify-content-center border-bottom pb-2 mb-2">
-                <div class="d-flex">
-                    <label for="total_rows">How many rows?</label>
-                    <input type="text" class="form-control mx-3" id="total_rows" style="width: 50px;">
+            <div class="card">
+                <div class="card-header text-center">
+                    Insert Data In Following Columns (3)
                 </div>
-                <div class="">
-                    <label for="delete_prev_data">
-                        <input type="checkbox" id="delete_prev_data"> Truncate Tables
-                    </label>
+                <div class="card-body">
+                    <div class="d-flex justify-content-center border-bottom pb-2 mb-2">
+                        <div class="d-flex">
+                            <label for="total_rows">How many rows?</label>
+                            <input type="text" class="form-control mx-3" id="total_rows" style="width: 50px;">
+                        </div>
+                        <div class="">
+                            <label for="delete_prev_data">
+                                <input type="checkbox" id="delete_prev_data"> Truncate Tables
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col m-2 p-2 faker-box border border-light-grey">
+                            <h5>Col #1</h5>
+                            <h7>(int)</h7>
+                            <select name="ctrl1" id="ctr1" class="form-control">
+                                <option value="">Select...</option>
+                                <option value="" disabled>--- Area1 ---</option>
+                                <option value="">Date Of Birth</option>
+                                <option value="">Full Name</option>
+                                <option value="" disabled>--- Area2 ---</option>
+                                <option value="">Address</option>
+                            </select>
+
+                            <i class="fas fa-times-circle remove-column cursor-pointer"></i>
+
+                        </div>
+                        <div class="col m-2 p-2 faker-box border border-light-grey">
+                            <h5>Col #2</h5>
+                            <h7>var_char(255)</h7>
+                            <select name="ctrl1" id="ctr1" class="form-control">
+                                <option value="">Select...</option>
+                                <option value="" disabled>--- Area1 ---</option>
+                                <option value="">Date Of Birth</option>
+                                <option value="">Full Name</option>
+                                <option value="" disabled>--- Area2 ---</option>
+                                <option value="">Address</option>
+                            </select>
+
+                            <i class="fas fa-times-circle remove-column cursor-pointer"></i>
+
+                        </div>
+                        <div class="col m-2 p-2 faker-box border border-light-grey">
+                            <h5>Col #1</h5>
+                            <h7>(datetime)</h7>
+                            <select name="ctrl1" id="ctr1" class="form-control">
+                                <option value="">Select...</option>
+                                <option value="" disabled>--- Area1 ---</option>
+                                <option value="">Date Of Birth</option>
+                                <option value="">Full Name</option>
+                                <option value="" disabled>--- Area2 ---</option>
+                                <option value="">Address</option>
+                            </select>
+
+                            <i class="fas fa-times-circle remove-column cursor-pointer"></i>
+
+                        </div>
+
+                        <div class="w-100"></div>
+
+                        <div class="col m-2 p-2 faker-box border border-light-grey">
+                            <h5>Col #1</h5>
+                            <h7>(datetime)</h7>
+                            <select name="ctrl1" id="ctr1" class="form-control">
+                                <option value="">Select...</option>
+                                <option value="" disabled>--- Area1 ---</option>
+                                <option value="">Date Of Birth</option>
+                                <option value="">Full Name</option>
+                                <option value="" disabled>--- Area2 ---</option>
+                                <option value="">Address</option>
+                            </select>
+                            <i class="fas fa-times-circle remove-column cursor-pointer"></i>
+                        </div>
+                        <div class="col m-2 p-2 faker-box border border-light-grey">
+                            <h5>Col #1</h5>
+                            <h7>(datetime)</h7>
+                            <select name="ctrl1" id="ctr1" class="form-control">
+                                <option value="">Select...</option>
+                                <option value="" disabled>--- Area1 ---</option>
+                                <option value="">Date Of Birth</option>
+                                <option value="">Full Name</option>
+                                <option value="" disabled>--- Area2 ---</option>
+                                <option value="">Address</option>
+                            </select>
+                            <i class="fas fa-times-circle remove-column cursor-pointer"></i>
+                        </div>
+                        <div class="col m-2 p-2 faker-box border border-light-grey">
+                            <h5>Col #1</h5>
+                            <h7>(datetime)</h7>
+                            <select name="ctrl1" id="ctr1" class="form-control">
+                                <option value="">Select...</option>
+                                <option value="" disabled>--- Area1 ---</option>
+                                <option value="">Date Of Birth</option>
+                                <option value="">Full Name</option>
+                                <option value="" disabled>--- Area2 ---</option>
+                                <option value="">Address</option>
+                            </select>
+                            <i class="fas fa-times-circle remove-column cursor-pointer"></i>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 mx-2 p-2 faker-box border border-light-grey">
-                    <h5>Col #1</h5>
-                    <h7>(int)</h7>
-                    <select name="ctrl1" id="ctr1" class="form-control">
-                        <option value="">Select...</option>
-                        <option value="" disabled>--- Area1 ---</option>
-                        <option value="">Date Of Birth</option>
-                        <option value="">Full Name</option>
-                        <option value="" disabled>--- Area2 ---</option>
-                        <option value="">Address</option>
-                    </select>
-
-                    <i class="fas fa-times-circle remove-column cursor-pointer"></i>
-
-                </div>
-                <div class="col-md-3 mx-2 p-2 faker-box border border-light-grey">
-                    <h5>Col #2</h5>
-                    <h7>var_char(255)</h7>
-                    <select name="ctrl1" id="ctr1" class="form-control">
-                        <option value="">Select...</option>
-                        <option value="" disabled>--- Area1 ---</option>
-                        <option value="">Date Of Birth</option>
-                        <option value="">Full Name</option>
-                        <option value="" disabled>--- Area2 ---</option>
-                        <option value="">Address</option>
-                    </select>
-
-                    <i class="fas fa-times-circle remove-column cursor-pointer"></i>
-
-                </div>
-                <div class="col-md-3 mx-2 p-2 faker-box border border-light-grey">
-                    <h5>Col #1</h5>
-                    <h7>(datetime)</h7>
-                    <select name="ctrl1" id="ctr1" class="form-control">
-                        <option value="">Select...</option>
-                        <option value="" disabled>--- Area1 ---</option>
-                        <option value="">Date Of Birth</option>
-                        <option value="">Full Name</option>
-                        <option value="" disabled>--- Area2 ---</option>
-                        <option value="">Address</option>
-                    </select>
-
-                    <i class="fas fa-times-circle remove-column cursor-pointer"></i>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <hr>
+                <div class="card-footer">
                     <button class="btn btn-primary float-right">Create!</button>
                 </div>
             </div>
