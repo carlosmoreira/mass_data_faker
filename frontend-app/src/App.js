@@ -220,10 +220,10 @@ class App extends Component {
     return (
       <div className="container">
         <HeaderSection />
-        <DatabaseConnectionInformationForm tables={this.state.dbStructure} />
+        <DatabaseConnectionInformationForm />
         <div className="row">
           <div className="col-md-3">
-            <TablesColumnsSelectionCard />
+            <TablesColumnsSelectionCard tables={this.state.dbStructure} />
           </div>
           <div className="col-md-9">
             <ColumnDataSelectionFormCard />

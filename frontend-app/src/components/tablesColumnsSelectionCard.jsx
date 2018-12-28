@@ -3,6 +3,10 @@ import React, { Component } from "react";
 class TablesColumnsSelectionCard extends Component {
   state = {};
   render() {
+    let { tables } = this.props;
+
+    console.log("col", tables);
+
     return (
       <div className="card">
         <div className="card-header text-center">Tables</div>
