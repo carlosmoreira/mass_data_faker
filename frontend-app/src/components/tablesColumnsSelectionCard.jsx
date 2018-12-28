@@ -25,9 +25,12 @@ class TablesColumnsSelectionCard extends Component {
                 </a>
                 <div className="list-group collapse" id={`${table.name}`}>
                   {table.columns.map(column => (
-                    <div className="list-group-item pt-0 pb-0">
-                      <input type="checkbox" id="col1" />
-                      <label htmlFor="col1"> {column.name}</label>
+                    <div
+                      key={column.name}
+                      className="list-group-item pt-0 pb-0"
+                    >
+                      <input type="checkbox" id={column.name} />
+                      <label htmlFor={column.name}> {column.name}</label>
                     </div>
                   ))}
                 </div>
