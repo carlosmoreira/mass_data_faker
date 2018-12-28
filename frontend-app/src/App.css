@@ -21,11 +21,9 @@
 }
 
 .list-group.list-group-root > .list-group > .list-group-item {
-  padding-left: 30px;
 }
 
 .list-group.list-group-root > .list-group > .list-group > .list-group-item {
-  padding-left: 45px;
 }
 
 .list-group-item .glyphicon {
