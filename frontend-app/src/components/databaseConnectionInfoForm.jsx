@@ -3,6 +3,10 @@ import React, { Component } from "react";
 class DatabaseConnectionInformationForm extends Component {
   state = {};
   render() {
+    let { tables } = this.props;
+
+    console.log("col", tables);
+
     return (
       <form action="">
         <div className="form-group row">
