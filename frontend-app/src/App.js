@@ -214,7 +214,57 @@ class App extends Component {
         "lastName"
       ]
     },
-    selectedTable: null
+    selectedTable: {
+      name: "books",
+      columns: [
+        {
+          name: "id",
+          dataType: "int",
+          isNullable: "NO",
+          characterMaximumLength: null
+        },
+        {
+          name: "name",
+          dataType: "varchar",
+          isNullable: "NO",
+          characterMaximumLength: 255,
+          isChecked: true
+        },
+        {
+          name: "pageNum",
+          dataType: "int",
+          isNullable: "NO",
+          characterMaximumLength: null,
+          isChecked: true
+        },
+        {
+          name: "file",
+          dataType: "varchar",
+          isNullable: "NO",
+          characterMaximumLength: 255,
+          isChecked: true
+        },
+        {
+          name: "image",
+          dataType: "varchar",
+          isNullable: "YES",
+          characterMaximumLength: 255,
+          isChecked: true
+        },
+        {
+          name: "created_at",
+          dataType: "timestamp",
+          isNullable: "YES",
+          characterMaximumLength: null
+        },
+        {
+          name: "updated_at",
+          dataType: "timestamp",
+          isNullable: "YES",
+          characterMaximumLength: null
+        }
+      ]
+    }
   };
 
   selectTable = selectedTable => {
@@ -227,6 +277,7 @@ class App extends Component {
       columnItr => columnItr.name === column.name
     );
     foundColumn.isChecked = !foundColumn.isChecked;
+    console.log(JSON.stringify(selectedTable));
     this.setState({ selectedTable });
   };
 
@@ -245,7 +296,9 @@ class App extends Component {
             />
           </div>
           <div className="col-md-9">
-            <ColumnDataSelectionFormCard />
+            <ColumnDataSelectionFormCard
+              selectedTable={this.state.selectedTable}
+            />
           </div>
         </div>
       </div>

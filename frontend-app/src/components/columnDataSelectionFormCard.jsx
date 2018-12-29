@@ -2,7 +2,14 @@ import React, { Component } from "react";
 
 class ColumnDataSelectionFormCard extends Component {
   state = {};
+
+  checkedColumns() {
+    return this.props.selectedTable.columns.filter(column => column.isChecked);
+  }
+
   render() {
+    let { selectedTable } = this.props;
+
     return (
       <div className="card">
         <div className="card-header text-center">
@@ -25,114 +32,31 @@ class ColumnDataSelectionFormCard extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col m-2 p-2 faker-box border border-light-grey">
-              <h5>Col #1</h5>
-              <h6>(int)</h6>
-              <select name="ctrl1" id="ctr1" className="form-control">
-                <option value="">Select...</option>
-                <option value="" disabled>
-                  --- Area1 ---
-                </option>
-                <option value="">Date Of Birth</option>
-                <option value="">Full Name</option>
-                <option value="" disabled>
-                  --- Area2 ---
-                </option>
-                <option value="">Address</option>
-              </select>
+            {this.checkedColumns().map((column, index) => (
+              <React.Fragment key={column.name}>
+                <div key={column.name} className="col-4 faker-box">
+                  <div className="border border-light-grey my-2 p-2 position-relative">
+                    <h5>{column.name}</h5>
+                    <h6>(int)</h6>
+                    <select name="ctrl1" id="ctr1" className="form-control">
+                      <option value="">Select...</option>
+                      <option value="" disabled>
+                        --- Area1 ---
+                      </option>
+                      <option value="">Date Of Birth</option>
+                      <option value="">Full Name</option>
+                      <option value="" disabled>
+                        --- Area2 ---
+                      </option>
+                      <option value="">Address</option>
+                    </select>
 
-              <i className="fa fa-times-circle remove-column cursor-pointer" />
-            </div>
-            <div className="col m-2 p-2 faker-box border border-light-grey">
-              <h5>Col #2</h5>
-              <h6>var_char(255)</h6>
-              <select name="ctrl1" id="ctr1" className="form-control">
-                <option value="">Select...</option>
-                <option value="" disabled>
-                  --- Area1 ---
-                </option>
-                <option value="">Date Of Birth</option>
-                <option value="">Full Name</option>
-                <option value="" disabled>
-                  --- Area2 ---
-                </option>
-                <option value="">Address</option>
-              </select>
-
-              <i className="fa fa-times-circle remove-column cursor-pointer" />
-            </div>
-            <div className="col m-2 p-2 faker-box border border-light-grey">
-              <h5>Col #1</h5>
-              <h6>(datetime)</h6>
-              <select name="ctrl1" id="ctr1" className="form-control">
-                <option value="">Select...</option>
-                <option value="" disabled>
-                  --- Area1 ---
-                </option>
-                <option value="">Date Of Birth</option>
-                <option value="">Full Name</option>
-                <option value="" disabled>
-                  --- Area2 ---
-                </option>
-                <option value="">Address</option>
-              </select>
-
-              <i className="fa fa-times-circle remove-column cursor-pointer" />
-            </div>
-
-            <div className="w-100" />
-
-            <div className="col m-2 p-2 faker-box border border-light-grey">
-              <h5>Col #1</h5>
-              <h6>(datetime)</h6>
-              <select name="ctrl1" id="ctr1" className="form-control">
-                <option value="">Select...</option>
-                <option value="" disabled>
-                  --- Area1 ---
-                </option>
-                <option value="">Date Of Birth</option>
-                <option value="">Full Name</option>
-                <option value="" disabled>
-                  --- Area2 ---
-                </option>
-                <option value="">Address</option>
-              </select>
-              <i className="fa fa-times-circle remove-column cursor-pointer" />
-            </div>
-            <div className="col m-2 p-2 faker-box border border-light-grey">
-              <h5>Col #1</h5>
-              <h6>(datetime)</h6>
-              <select name="ctrl1" id="ctr1" className="form-control">
-                <option value="">Select...</option>
-                <option value="" disabled>
-                  --- Area1 ---
-                </option>
-                <option value="">Date Of Birth</option>
-                <option value="">Full Name</option>
-                <option value="" disabled>
-                  --- Area2 ---
-                </option>
-                <option value="">Address</option>
-              </select>
-              <i className="fa fa-times-circle remove-column cursor-pointer" />
-            </div>
-            <div className="col m-2 p-2 faker-box border border-light-grey">
-              <h5>Col #1</h5>
-              <h6>(datetime)</h6>
-              <select name="ctrl1" id="ctr1" className="form-control">
-                <option value="">Select...</option>
-                <option value="" disabled>
-                  --- Area1 ---
-                </option>
-                <option value="">Date Of Birth</option>
-                <option value="">Full Name</option>
-                <option value="" disabled>
-                  --- Area2 ---
-                </option>
-                <option value="">Address</option>
-              </select>
-              <i className="fa fa-times-circle remove-column cursor-pointer" />
-            </div>
+                    <i className="fa fa-times-circle remove-column cursor-pointer" />
+                  </div>
+                </div>
+                {(index + 1) % 3 == 0 ? <div className="w-100" /> : null}
+              </React.Fragment>
+            ))}
           </div>
         </div>
         <div className="card-footer">

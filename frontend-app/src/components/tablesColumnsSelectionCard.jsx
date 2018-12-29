@@ -26,7 +26,7 @@ class TablesColumnsSelectionCard extends Component {
         <div className="card-body">
           <div className="list-group list-group-root" id="columns-accordion">
             {tables.map(table => (
-              <React.Fragment>
+              <React.Fragment key={table.name}>
                 <a
                   key={table.name}
                   href={`#${table.name}`}
