@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
 class TablesColumnsSelectionCard extends Component {
-  state = {};
-
   isSelectedTable = table => {
     return (
       this.props.selectedTable && table.name === this.props.selectedTable.name
@@ -15,7 +13,12 @@ class TablesColumnsSelectionCard extends Component {
   }
 
   render() {
-    let { tables, clickSelectTable, selectedTable } = this.props;
+    let {
+      tables,
+      clickSelectTable,
+      selectedTable,
+      handleInputColumnChange
+    } = this.props;
 
     return (
       <div className="card">
@@ -47,7 +50,12 @@ class TablesColumnsSelectionCard extends Component {
                       key={column.name}
                       className="list-group-item pt-0 pb-0"
                     >
-                      <input type="checkbox" id={column.name} />
+                      <input
+                        type="checkbox"
+                        id={column.name}
+                        checked={column.isChecked || false}
+                        onChange={() => handleInputColumnChange(column)}
+                      />
                       <label htmlFor={column.name}> {column.name}</label>
                     </div>
                   ))}

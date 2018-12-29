@@ -221,6 +221,15 @@ class App extends Component {
     this.setState({ selectedTable });
   };
 
+  inputColumnChange = column => {
+    let selectedTable = { ...this.state.selectedTable };
+    let foundColumn = selectedTable.columns.find(
+      columnItr => columnItr.name === column.name
+    );
+    foundColumn.isChecked = !foundColumn.isChecked;
+    this.setState({ selectedTable });
+  };
+
   render() {
     return (
       <div className="container">
@@ -232,6 +241,7 @@ class App extends Component {
               tables={this.state.dbStructure}
               clickSelectTable={this.selectTable}
               selectedTable={this.state.selectedTable}
+              handleInputColumnChange={this.inputColumnChange}
             />
           </div>
           <div className="col-md-9">
