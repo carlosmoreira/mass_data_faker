@@ -2,16 +2,26 @@ import React, { Component } from "react";
 
 class TablesColumnsSelectionCard extends Component {
   state = {};
-  render() {
-    let { tables } = this.props;
 
-    console.log("col", tables);
+  isSelectedTable = table => {
+    return (
+      this.props.selectedTable && table.name === this.props.selectedTable.name
+    );
+  };
+
+  showCheckForSelectedTable(table) {
+    if (this.isSelectedTable(table)) return <i className="fa fa-check" />;
+    return null;
+  }
+
+  render() {
+    let { tables, clickSelectTable, selectedTable } = this.props;
 
     return (
       <div className="card">
         <div className="card-header text-center">Tables</div>
         <div className="card-body">
-          <div className="list-group list-group-root">
+          <div className="list-group list-group-root" id="columns-accordion">
             {tables.map(table => (
               <React.Fragment>
                 <a
@@ -19,11 +29,19 @@ class TablesColumnsSelectionCard extends Component {
                   href={`#${table.name}`}
                   className="list-group-item"
                   data-toggle="collapse"
+                  onClick={() => clickSelectTable(table)}
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
                 >
                   <i className="glyphicon glyphicon-chevron-right" />
+                  {this.showCheckForSelectedTable(table)}
                   {table.name} ({table.columns.length})
                 </a>
-                <div className="list-group collapse" id={`${table.name}`}>
+                <div
+                  className="list-group collapse"
+                  id={`${table.name}`}
+                  data-parent="#columns-accordion"
+                >
                   {table.columns.map(column => (
                     <div
                       key={column.name}
