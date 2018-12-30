@@ -214,60 +214,15 @@ class App extends Component {
         "lastName"
       ]
     },
-    selectedTable: {
-      name: "books",
-      columns: [
-        {
-          name: "id",
-          dataType: "int",
-          isNullable: "NO",
-          characterMaximumLength: null
-        },
-        {
-          name: "name",
-          dataType: "varchar",
-          isNullable: "NO",
-          characterMaximumLength: 255,
-          isChecked: true
-        },
-        {
-          name: "pageNum",
-          dataType: "int",
-          isNullable: "NO",
-          characterMaximumLength: null,
-          isChecked: true
-        },
-        {
-          name: "file",
-          dataType: "varchar",
-          isNullable: "NO",
-          characterMaximumLength: 255,
-          isChecked: true
-        },
-        {
-          name: "image",
-          dataType: "varchar",
-          isNullable: "YES",
-          characterMaximumLength: 255,
-          isChecked: true
-        },
-        {
-          name: "created_at",
-          dataType: "timestamp",
-          isNullable: "YES",
-          characterMaximumLength: null
-        },
-        {
-          name: "updated_at",
-          dataType: "timestamp",
-          isNullable: "YES",
-          characterMaximumLength: null
-        }
-      ]
-    }
+    selectedTable: null
   };
 
   selectTable = selectedTable => {
+    selectedTable.columns.map(column => {
+      if (column.isNullable === "NO") {
+        column.isChecked = true;
+      }
+    });
     this.setState({ selectedTable });
   };
 
@@ -277,7 +232,15 @@ class App extends Component {
       columnItr => columnItr.name === column.name
     );
     foundColumn.isChecked = !foundColumn.isChecked;
-    console.log(JSON.stringify(selectedTable));
+    this.setState({ selectedTable });
+  };
+
+  setFakerType = (column, event) => {
+    let selectedTable = { ...this.state.selectedTable };
+    let foundColumn = selectedTable.columns.find(
+      columnItr => columnItr.name === column.name
+    );
+    foundColumn.faker = event.target.value;
     this.setState({ selectedTable });
   };
 
@@ -298,6 +261,9 @@ class App extends Component {
           <div className="col-md-9">
             <ColumnDataSelectionFormCard
               selectedTable={this.state.selectedTable}
+              fakerTypes={this.state.fakerTypes}
+              handleRemoveColumn={this.inputColumnChange}
+              onChangeSetFakerType={this.setFakerType}
             />
           </div>
         </div>
