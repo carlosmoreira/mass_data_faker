@@ -22,6 +22,42 @@ class ColumnDataSelectionFormCard extends Component {
     console.log("submit faker values: ", this.props.selectedTable);
   }
 
+  showFakerSelectOptions(column) {
+    let { fakerTypes, onChangeSetFakerType } = this.props;
+    if (column.hasAutoIncrement) {
+      return (
+        <p className="alert alert-warning">
+          <i className="fa fa-exclamation-circle" /> Column has auto increment.
+          No selection needed.
+        </p>
+      );
+    }
+    return (
+      <select
+        onChange={event => onChangeSetFakerType(column, event)}
+        name="ctrl1"
+        id="ctr1"
+        className="form-control"
+      >
+        <option value="">Select...</option>
+        {Object.keys(fakerTypes).map(fakerType => (
+          <React.Fragment key={fakerType}>
+            <option value="" disabled>
+              --- {fakerType} ---
+            </option>
+            <React.Fragment>
+              {fakerTypes[fakerType].map(value => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </React.Fragment>
+          </React.Fragment>
+        ))}
+      </select>
+    );
+  }
+
   render() {
     if (this.checkedColumns() < 1) {
       return (
@@ -64,28 +100,7 @@ class ColumnDataSelectionFormCard extends Component {
                     <h5 className="border-bottom clearfix mt-0">
                       <span>{column.name}</span>
                     </h5>
-                    <select
-                      onChange={event => onChangeSetFakerType(column, event)}
-                      name="ctrl1"
-                      id="ctr1"
-                      className="form-control"
-                    >
-                      <option value="">Select...</option>
-                      {Object.keys(fakerTypes).map(fakerType => (
-                        <React.Fragment key={fakerType}>
-                          <option value="" disabled>
-                            --- {fakerType} ---
-                          </option>
-                          <React.Fragment>
-                            {fakerTypes[fakerType].map(value => (
-                              <option key={value} value={value}>
-                                {value}
-                              </option>
-                            ))}
-                          </React.Fragment>
-                        </React.Fragment>
-                      ))}
-                    </select>
+                    {this.showFakerSelectOptions(column)}
                     {this.showRemoveIcon(column)}
                   </div>
                 </div>
