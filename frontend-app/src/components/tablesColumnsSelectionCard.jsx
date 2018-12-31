@@ -8,8 +8,37 @@ class TablesColumnsSelectionCard extends Component {
   };
 
   showCheckForSelectedTable(table) {
-    if (this.isSelectedTable(table)) return <i className="fa fa-check" />;
+    if (this.isSelectedTable(table)) return <i className="fa fa-check mr-1" />;
     return null;
+  }
+
+  isDisabled(column) {
+    return column.isNullable === "NO" ? "disabled" : "";
+  }
+
+  showPrimaryKey(column) {
+    //@todo: Write logic to show primary key
+    //return <i className="fa fa-key"></i>
+  }
+
+  getColumnClass(column) {
+    if (column.isNullable === "NO") {
+      return "text-danger";
+    }
+  }
+
+  getTables() {
+    let tables = this.props.tables;
+    if (!tables) return [];
+    tables.sort((table1, table2) =>
+      table1.name > table2.name ? 1 : table2.name > table1.name ? -1 : 0
+    );
+    tables.map(table =>
+      table.columns.sort((col1, col2) =>
+        col1.name > col2.name ? 1 : col2.name > col1.name ? -1 : 0
+      )
+    );
+    return tables;
   }
 
   render() {
@@ -25,7 +54,7 @@ class TablesColumnsSelectionCard extends Component {
         <div className="card-header text-center">Tables</div>
         <div className="card-body">
           <div className="list-group list-group-root" id="columns-accordion">
-            {tables.map(table => (
+            {this.getTables().map(table => (
               <React.Fragment key={table.name}>
                 <a
                   key={table.name}
@@ -55,8 +84,14 @@ class TablesColumnsSelectionCard extends Component {
                         id={column.name}
                         checked={column.isChecked || false}
                         onChange={() => handleInputColumnChange(column)}
+                        disabled={this.isDisabled(column)}
                       />
-                      <label htmlFor={column.name}> {column.name}</label>
+                      <label className="ml-1" htmlFor={column.name}>
+                        <span className={this.getColumnClass(column)}>
+                          {column.name}
+                        </span>
+                        {this.showPrimaryKey(column)}
+                      </label>
                     </div>
                   ))}
                 </div>

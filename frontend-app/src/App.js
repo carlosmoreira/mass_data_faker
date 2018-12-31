@@ -231,6 +231,7 @@ class App extends Component {
     let foundColumn = selectedTable.columns.find(
       columnItr => columnItr.name === column.name
     );
+    if (foundColumn.isNullable === "NO") return;
     foundColumn.isChecked = !foundColumn.isChecked;
     this.setState({ selectedTable });
   };

@@ -8,6 +8,16 @@ class ColumnDataSelectionFormCard extends Component {
     return this.props.selectedTable.columns.filter(column => column.isChecked);
   }
 
+  showRemoveIcon(column) {
+    if (column.isNullable === "NO") return;
+    return (
+      <i
+        className="fa fa-times-circle remove-column cursor-pointer"
+        onClick={() => this.props.handleRemoveColumn(column)}
+      />
+    );
+  }
+
   submitFakerValues() {
     console.log("submit faker values: ", this.props.selectedTable);
   }
@@ -76,10 +86,7 @@ class ColumnDataSelectionFormCard extends Component {
                         </React.Fragment>
                       ))}
                     </select>
-                    <i
-                      className="fa fa-times-circle remove-column cursor-pointer"
-                      onClick={() => handleRemoveColumn(column)}
-                    />
+                    {this.showRemoveIcon(column)}
                   </div>
                 </div>
                 {(index + 1) % 3 == 0 ? <div className="w-100" /> : null}
