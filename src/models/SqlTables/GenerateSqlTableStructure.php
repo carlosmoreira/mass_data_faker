@@ -20,7 +20,7 @@ class GenerateSqlTableStructure
      */
     public static function createSqlTableStructures($sqlDataRows)
     {
-
+        
         foreach ($sqlDataRows as $row) {
             $tableName = $row['TABLE_NAME'];
 
@@ -38,7 +38,8 @@ class GenerateSqlTableStructure
             $sqlProperty->characterMaximumLength = $row['CHARACTER_MAXIMUM_LENGTH'];
             $sqlProperty->dataType = $row['DATA_TYPE'];
             $sqlProperty->isNullable = $row['IS_NULLABLE'];
-
+            $sqlProperty->isPrimaryKey = ($row['COLUMN_KEY'] === "PRI");
+            $sqlProperty->hasAutoIncrement = ( strpos($row['EXTRA'],"auto_increment") !== FALSE ) ;
             $sqlTableStructure->columns[] = $sqlProperty;
 
             if ($indexOfTableStructure < 0) {

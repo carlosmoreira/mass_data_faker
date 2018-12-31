@@ -18,4 +18,8 @@ class SqlProperty
     public $isNullable;
 
     public $characterMaximumLength;
+
+    public $isPrimaryKey;
+
+    public $hasAutoIncrement;
 }
