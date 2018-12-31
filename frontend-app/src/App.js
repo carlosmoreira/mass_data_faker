@@ -14,43 +14,57 @@ class App extends Component {
             name: "id",
             dataType: "int",
             isNullable: "NO",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: true,
+            hasAutoIncrement: true
           },
           {
             name: "name",
             dataType: "varchar",
             isNullable: "NO",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "pageNum",
             dataType: "int",
             isNullable: "NO",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "file",
             dataType: "varchar",
             isNullable: "NO",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "image",
             dataType: "varchar",
             isNullable: "YES",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "created_at",
             dataType: "timestamp",
             isNullable: "YES",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "updated_at",
             dataType: "timestamp",
             isNullable: "YES",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           }
         ]
       },
@@ -61,19 +75,25 @@ class App extends Component {
             name: "book_id",
             dataType: "int",
             isNullable: "NO",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "name",
             dataType: "varchar",
             isNullable: "NO",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "page",
             dataType: "int",
             isNullable: "NO",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           }
         ]
       },
@@ -84,19 +104,25 @@ class App extends Component {
             name: "id",
             dataType: "int",
             isNullable: "NO",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: true,
+            hasAutoIncrement: true
           },
           {
             name: "migration",
             dataType: "varchar",
             isNullable: "NO",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "batch",
             dataType: "int",
             isNullable: "NO",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           }
         ]
       },
@@ -107,25 +133,33 @@ class App extends Component {
             name: "book_id",
             dataType: "int",
             isNullable: "NO",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "note",
             dataType: "varchar",
             isNullable: "NO",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "page",
             dataType: "int",
             isNullable: "NO",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "id",
             dataType: "int",
             isNullable: "NO",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: true,
+            hasAutoIncrement: true
           }
         ]
       },
@@ -136,19 +170,25 @@ class App extends Component {
             name: "email",
             dataType: "varchar",
             isNullable: "NO",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "token",
             dataType: "varchar",
             isNullable: "NO",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "created_at",
             dataType: "timestamp",
             isNullable: "YES",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           }
         ]
       },
@@ -159,43 +199,57 @@ class App extends Component {
             name: "id",
             dataType: "int",
             isNullable: "NO",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: true,
+            hasAutoIncrement: true
           },
           {
             name: "name",
             dataType: "varchar",
             isNullable: "NO",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "email",
             dataType: "varchar",
             isNullable: "NO",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "password",
             dataType: "varchar",
             isNullable: "NO",
-            characterMaximumLength: 255
+            characterMaximumLength: 255,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "remember_token",
             dataType: "varchar",
             isNullable: "YES",
-            characterMaximumLength: 100
+            characterMaximumLength: 100,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "created_at",
             dataType: "timestamp",
             isNullable: "YES",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           },
           {
             name: "updated_at",
             dataType: "timestamp",
             isNullable: "YES",
-            characterMaximumLength: null
+            characterMaximumLength: null,
+            isPrimaryKey: false,
+            hasAutoIncrement: false
           }
         ]
       }

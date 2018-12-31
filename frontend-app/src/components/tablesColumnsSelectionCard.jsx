@@ -17,8 +17,22 @@ class TablesColumnsSelectionCard extends Component {
   }
 
   showPrimaryKey(column) {
-    //@todo: Write logic to show primary key
-    //return <i className="fa fa-key"></i>
+    let icons = [];
+    if (column.isPrimaryKey)
+      icons.push(
+        <small key="danger" className="ml-2">
+          <i className="text-danger fa fa-key" />
+        </small>
+      );
+
+    if (column.hasAutoIncrement)
+      icons.push(
+        <small key="ai" className="ml-2 text-danger">
+          AI
+        </small>
+      );
+
+    return icons;
   }
 
   getColumnClass(column) {
@@ -43,7 +57,6 @@ class TablesColumnsSelectionCard extends Component {
 
   render() {
     let {
-      tables,
       clickSelectTable,
       selectedTable,
       handleInputColumnChange
@@ -89,8 +102,8 @@ class TablesColumnsSelectionCard extends Component {
                       <label className="ml-1" htmlFor={column.name}>
                         <span className={this.getColumnClass(column)}>
                           {column.name}
+                          {this.showPrimaryKey(column)}
                         </span>
-                        {this.showPrimaryKey(column)}
                       </label>
                     </div>
                   ))}
