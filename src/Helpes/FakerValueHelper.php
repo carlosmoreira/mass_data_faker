@@ -34,7 +34,6 @@ class FakerValueHelper
         $providers = $faker->getProviders();
         for($i = 0; $i < (count($providers) - 1) ; $i++){
             $reflection = new \ReflectionClass($providers[$i]);
-            $className = $reflection->getName();
             foreach($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
                 if ($method->class != self::BASE_NAME_SPACE) {
                     $methodsInClass[$reflection->getShortName()][] = $method->name;
