@@ -14,14 +14,13 @@ use Faker\Factory as FakerFactory;
 class FakerValueHelper
 {
     const BASE_NAME_SPACE = "Faker\Provider\Base";
+    const EXCLUDE_METHODS = ['file','setDefaultTimezone','getDefaultTimezone'];
 
     public static function createValue($type)
     {
         $faker = FakerFactory::create();
         return $faker->$type;
     }
-
-    //Create a unit test for this that loops through all values and confirm a property can be created.
 
     /**
      * Retrieves all possible properties of faker | separated by sections
@@ -35,6 +34,10 @@ class FakerValueHelper
         for($i = 0; $i < (count($providers) - 1) ; $i++){
             $reflection = new \ReflectionClass($providers[$i]);
             foreach($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
+                $requiredParams = $method->getNumberOfRequiredParameters();
+                if($requiredParams > 0 || in_array($method->name,self::EXCLUDE_METHODS)){
+                    continue;
+                }
                 if ($method->class != self::BASE_NAME_SPACE) {
                     $methodsInClass[$reflection->getShortName()][] = $method->name;
                 }
