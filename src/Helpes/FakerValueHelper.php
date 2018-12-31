@@ -13,6 +13,7 @@ use Faker\Factory as FakerFactory;
 
 class FakerValueHelper
 {
+    const BASE_NAME_SPACE = "Faker\Provider\Base";
 
     public static function createValue($type)
     {
@@ -26,39 +27,21 @@ class FakerValueHelper
      * Retrieves all possible properties of faker | separated by sections
      * @return array
      */
-    public static function getFormatters()
+    public static function getFakerProviders()
     {
-        return [
-            'base' => [
-                'randomDigit',
-                'randomDigitNotNull',
-            ],
-            'person' => [
-                'title',
-                'titleMale',
-                'titleFemale',
-                'suffix',
-                'name',
-                'firstName',
-                'firstNameMale',
-                'firstNameFemale',
-                'lastName'
-            ],
-            'lorem' => [],
-            'address' => [],
-            'phoneNumber' => [],
-            'company' => [],
-            'text' => [],
-            'datetime' => [],
-            'internet' => [],
-            'userAgent' => [],
-            'payment' => [],
-            'color' => [],
-            'file' => [],
-            'image' => [],
-            'uuid' => [],
-            'barCode' => [],
-            'miscellaneous' => [],
-        ];
+        $methodsInClass = [];
+        $faker = FakerFactory::create();
+        $providers = $faker->getProviders();
+        for($i = 0; $i < (count($providers) - 1) ; $i++){
+            $reflection = new \ReflectionClass($providers[$i]);
+            $className = $reflection->getName();
+            foreach($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
+                if ($method->class != self::BASE_NAME_SPACE) {
+                    $methodsInClass[$reflection->getShortName()][] = $method->name;
+                }
+
+            }
+        }
+        return $methodsInClass;
     }
 }

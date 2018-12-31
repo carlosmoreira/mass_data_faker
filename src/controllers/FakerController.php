@@ -33,7 +33,7 @@ class FakerController extends Controller
             } else
                 throw new \Exception("Unable to connect to DB");
 
-            return $response->withJson(['dbStructure' => $structure, 'fakerTypes' => FakerValueHelper::getFormatters()], 200);
+            return $response->withJson(['dbStructure' => $structure, 'fakerTypes' => FakerValueHelper::getFakerProviders()], 200);
 
         } catch (\Exception $exception) {
             return $response->withJson(['error' => $exception->getMessage()], 400);

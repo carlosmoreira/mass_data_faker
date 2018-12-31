@@ -16,13 +16,13 @@ class FakerValueHelperTest extends BaseTestCase
 {
     public function testFakerHelperHasFormatters()
     {
-        $formatters = FakerValueHelper::getFormatters();
+        $formatters = FakerValueHelper::getFakerProviders();
         $this->assertNotEmpty($formatters);
     }
 
     public function testFormattersCanCreateValues()
     {
-        $formatters = FakerValueHelper::getFormatters();
+        $formatters = FakerValueHelper::getFakerProviders();
         $faker = Factory::create();
 
         foreach ($formatters as $formatter) {
