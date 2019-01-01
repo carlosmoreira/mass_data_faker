@@ -29,7 +29,7 @@ class FakerValueHelperTest extends BaseTestCase
             foreach ($formatter as $property) {
                 $this->assertNotNull($faker->{$property}, "{$property} came back as null");
                 if(!is_bool($faker->{$property}))
-                    $this->assertNotEmpty($faker->{$property});
+                    $this->assertNotEmpty($faker->{$property},"{$property} came bas as empty");
             }
         }
     }
