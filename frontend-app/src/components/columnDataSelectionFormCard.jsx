@@ -40,14 +40,14 @@ class ColumnDataSelectionFormCard extends Component {
         className="form-control"
       >
         <option value="">Select...</option>
-        {Object.keys(fakerTypes).map(fakerType => (
-          <React.Fragment key={fakerType}>
+        {Object.keys(fakerTypes).map((fakerType, index) => (
+          <React.Fragment key={column + fakerType + index}>
             <option value="" disabled>
               --- {fakerType} ---
             </option>
             <React.Fragment>
-              {fakerTypes[fakerType].map(value => (
-                <option key={value} value={value}>
+              {fakerTypes[fakerType].map((value, index) => (
+                <option key={value + index} value={value}>
                   {value}
                 </option>
               ))}
@@ -91,7 +91,7 @@ class ColumnDataSelectionFormCard extends Component {
           </div>
           <div className="row">
             {this.checkedColumns().map((column, index) => (
-              <React.Fragment key={column.name}>
+              <React.Fragment key={column.name + index}>
                 <div key={column.name} className="col-4 faker-box">
                   <div className="border border-light-grey my-2 p-2 position-relative">
                     <small>

@@ -8,268 +8,8 @@ import axios from "axios";
 import config from "./config";
 class App extends Component {
   state = {
-    dbStructure: [
-      {
-        name: "books",
-        columns: [
-          {
-            name: "id",
-            dataType: "int",
-            isNullable: "NO",
-            characterMaximumLength: null,
-            isPrimaryKey: true,
-            hasAutoIncrement: true
-          },
-          {
-            name: "name",
-            dataType: "varchar",
-            isNullable: "NO",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "pageNum",
-            dataType: "int",
-            isNullable: "NO",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "file",
-            dataType: "varchar",
-            isNullable: "NO",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "image",
-            dataType: "varchar",
-            isNullable: "YES",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "created_at",
-            dataType: "timestamp",
-            isNullable: "YES",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "updated_at",
-            dataType: "timestamp",
-            isNullable: "YES",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          }
-        ]
-      },
-      {
-        name: "chapters",
-        columns: [
-          {
-            name: "book_id",
-            dataType: "int",
-            isNullable: "NO",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "name",
-            dataType: "varchar",
-            isNullable: "NO",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "page",
-            dataType: "int",
-            isNullable: "NO",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          }
-        ]
-      },
-      {
-        name: "migrations",
-        columns: [
-          {
-            name: "id",
-            dataType: "int",
-            isNullable: "NO",
-            characterMaximumLength: null,
-            isPrimaryKey: true,
-            hasAutoIncrement: true
-          },
-          {
-            name: "migration",
-            dataType: "varchar",
-            isNullable: "NO",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "batch",
-            dataType: "int",
-            isNullable: "NO",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          }
-        ]
-      },
-      {
-        name: "notes",
-        columns: [
-          {
-            name: "book_id",
-            dataType: "int",
-            isNullable: "NO",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "note",
-            dataType: "varchar",
-            isNullable: "NO",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "page",
-            dataType: "int",
-            isNullable: "NO",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "id",
-            dataType: "int",
-            isNullable: "NO",
-            characterMaximumLength: null,
-            isPrimaryKey: true,
-            hasAutoIncrement: true
-          }
-        ]
-      },
-      {
-        name: "password_resets",
-        columns: [
-          {
-            name: "email",
-            dataType: "varchar",
-            isNullable: "NO",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "token",
-            dataType: "varchar",
-            isNullable: "NO",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "created_at",
-            dataType: "timestamp",
-            isNullable: "YES",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          }
-        ]
-      },
-      {
-        name: "users",
-        columns: [
-          {
-            name: "id",
-            dataType: "int",
-            isNullable: "NO",
-            characterMaximumLength: null,
-            isPrimaryKey: true,
-            hasAutoIncrement: true
-          },
-          {
-            name: "name",
-            dataType: "varchar",
-            isNullable: "NO",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "email",
-            dataType: "varchar",
-            isNullable: "NO",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "password",
-            dataType: "varchar",
-            isNullable: "NO",
-            characterMaximumLength: 255,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "remember_token",
-            dataType: "varchar",
-            isNullable: "YES",
-            characterMaximumLength: 100,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "created_at",
-            dataType: "timestamp",
-            isNullable: "YES",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          },
-          {
-            name: "updated_at",
-            dataType: "timestamp",
-            isNullable: "YES",
-            characterMaximumLength: null,
-            isPrimaryKey: false,
-            hasAutoIncrement: false
-          }
-        ]
-      }
-    ],
-    fakerTypes: {
-      base: ["randomDigit", "randomDigitNotNull"],
-      person: [
-        "title",
-        "titleMale",
-        "titleFemale",
-        "suffix",
-        "name",
-        "firstName",
-        "firstNameMale",
-        "firstNameFemale",
-        "lastName"
-      ]
-    },
+    dbStructure: null,
+    fakerTypes: null,
     selectedTable: null
   };
 
@@ -312,14 +52,46 @@ class App extends Component {
         config.api_url + "readDatabase",
         dbFormValues
       );
-      let x = await response.data;
+      console.log(response.data);
       console.log("values", dbFormValues);
+      this.setState({ ...response.data });
       setSubmitting(false);
       return;
     } catch (exception) {
       console.log(exception);
       setSubmitting(false);
     }
+  };
+
+  renderTableInformation = () => {
+    if (!this.state.dbStructure) {
+      return (
+        <p className="alert alert-warning">
+          <i className="fa fa-exclamation-circle" /> Please enter Database
+          Information above
+        </p>
+      );
+    }
+    return (
+      <div className="row">
+        <div className="col-md-3">
+          <TablesColumnsSelectionCard
+            tables={this.state.dbStructure}
+            clickSelectTable={this.selectTable}
+            selectedTable={this.state.selectedTable}
+            handleInputColumnChange={this.inputColumnChange}
+          />
+        </div>
+        <div className="col-md-9">
+          <ColumnDataSelectionFormCard
+            selectedTable={this.state.selectedTable}
+            fakerTypes={this.state.fakerTypes}
+            handleRemoveColumn={this.inputColumnChange}
+            onChangeSetFakerType={this.setFakerType}
+          />
+        </div>
+      </div>
+    );
   };
 
   render() {
@@ -329,24 +101,7 @@ class App extends Component {
         <DatabaseConnectionInformationForm
           submitAction={this.handleDbFormSubmit}
         />
-        <div className="row">
-          <div className="col-md-3">
-            <TablesColumnsSelectionCard
-              tables={this.state.dbStructure}
-              clickSelectTable={this.selectTable}
-              selectedTable={this.state.selectedTable}
-              handleInputColumnChange={this.inputColumnChange}
-            />
-          </div>
-          <div className="col-md-9">
-            <ColumnDataSelectionFormCard
-              selectedTable={this.state.selectedTable}
-              fakerTypes={this.state.fakerTypes}
-              handleRemoveColumn={this.inputColumnChange}
-              onChangeSetFakerType={this.setFakerType}
-            />
-          </div>
-        </div>
+        {this.renderTableInformation()}
       </div>
     );
   }
