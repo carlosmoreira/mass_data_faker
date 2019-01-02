@@ -3,7 +3,9 @@ import DatabaseConnectionInformationForm from "./components/databaseConnectionIn
 import TablesColumnsSelectionCard from "./components/tablesColumnsSelectionCard";
 import ColumnDataSelectionFormCard from "./components/columnDataSelectionFormCard";
 import HeaderSection from "./components/sections/HeaderSection";
+import axios from "axios";
 
+import config from "./config";
 class App extends Component {
   state = {
     dbStructure: [
@@ -299,12 +301,25 @@ class App extends Component {
     this.setState({ selectedTable });
   };
 
-  handleDbFormSubmit = (values, { props = this.props, setSubmitting }) => {
+  handleDbFormSubmit = async (
+    dbFormValues,
+    { props = this.props, setSubmitting }
+  ) => {
     //process form submission here
     //done submitting, set submitting to false
-    console.log("values", values);
-    setSubmitting(false);
-    return;
+    try {
+      let response = await axios.post(
+        config.api_url + "readDatabase",
+        dbFormValues
+      );
+      let x = await response.data;
+      console.log("values", dbFormValues);
+      setSubmitting(false);
+      return;
+    } catch (exception) {
+      console.log(exception);
+      setSubmitting(false);
+    }
   };
 
   render() {

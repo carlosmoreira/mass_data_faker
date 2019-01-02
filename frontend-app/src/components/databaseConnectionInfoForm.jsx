@@ -7,10 +7,10 @@ class DatabaseConnectionInformationForm extends Component {
       <Formik
         initialValues={{
           db_type: "",
-          host: "",
-          username: "",
-          password: "",
-          database: ""
+          db_host: "",
+          db_username: "",
+          db_password: "",
+          db_databaseName: ""
         }}
         validate={values => {
           let errors = [];
@@ -38,6 +38,7 @@ class DatabaseConnectionInformationForm extends Component {
                           component="select"
                           placeholder="Database Type"
                         >
+                          <option value="">Select...</option>
                           <option value="mysql">MySql</option>
                           <option value="sqlsvr">MSSQL</option>
                         </Field>
@@ -47,7 +48,7 @@ class DatabaseConnectionInformationForm extends Component {
                         <Field
                           type="text"
                           className="form-control"
-                          name="host"
+                          name="db_host"
                         />
                         {/* {errors.email && touched.email && <div>{errors.email}</div>} */}
                       </div>
@@ -56,7 +57,7 @@ class DatabaseConnectionInformationForm extends Component {
                         <Field
                           type="text"
                           className="form-control"
-                          name="username"
+                          name="db_username"
                         />
                         {/* {errors.email && touched.email && <div>{errors.email}</div>} */}
                       </div>
@@ -65,7 +66,7 @@ class DatabaseConnectionInformationForm extends Component {
                         <Field
                           type="text"
                           className="form-control"
-                          name="password"
+                          name="db_password"
                         />
                         {/* {errors.email && touched.email && <div>{errors.email}</div>} */}
                       </div>
@@ -74,7 +75,7 @@ class DatabaseConnectionInformationForm extends Component {
                         <Field
                           type="text"
                           className="form-control"
-                          name="database"
+                          name="db_databaseName"
                         />
                         {/* {errors.email && touched.email && <div>{errors.email}</div>} */}
                       </div>
