@@ -299,11 +299,21 @@ class App extends Component {
     this.setState({ selectedTable });
   };
 
+  handleDbFormSubmit = (values, { props = this.props, setSubmitting }) => {
+    //process form submission here
+    //done submitting, set submitting to false
+    console.log("values", values);
+    setSubmitting(false);
+    return;
+  };
+
   render() {
     return (
       <div className="container">
         <HeaderSection />
-        <DatabaseConnectionInformationForm />
+        <DatabaseConnectionInformationForm
+          submitAction={this.handleDbFormSubmit}
+        />
         <div className="row">
           <div className="col-md-3">
             <TablesColumnsSelectionCard

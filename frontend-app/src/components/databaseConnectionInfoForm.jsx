@@ -2,16 +2,6 @@ import React, { Component } from "react";
 import { Formik, FormikProps, Form, Field } from "formik";
 
 class DatabaseConnectionInformationForm extends Component {
-  //state = {};
-
-  handleSubmit = (values, { props = this.props, setSubmitting }) => {
-    //process form submission here
-    //done submitting, set submitting to false
-    console.log("values", values);
-    setSubmitting(false);
-    return;
-  };
-
   render() {
     return (
       <Formik
@@ -29,7 +19,7 @@ class DatabaseConnectionInformationForm extends Component {
           //check if my values have errors
           return errors;
         }}
-        onSubmit={this.handleSubmit}
+        onSubmit={this.props.submitAction}
         render={({ errors, status, touched, isSubmitting }) => (
           <Form>
             <div className="form-group row">
