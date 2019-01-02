@@ -19,7 +19,9 @@ class ColumnDataSelectionFormCard extends Component {
   }
 
   submitFakerValues() {
-    console.log("submit faker values: ", this.props.selectedTable);
+    let request = { ...this.props.selectedTable };
+    request.columns = request.columns.filter(column => column.isChecked);
+    console.log("request payload: ", request);
   }
 
   showFakerSelectOptions(column) {
