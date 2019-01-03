@@ -45,6 +45,7 @@ class DbConnection
                 'charset' => 'utf8',
                 'collation' => 'utf8_unicode_ci',
                 'prefix' => getenv('DB_PREFIX'),
+                'port' => $dbConnectionPropertiesRequest->db_port
             ]);
             $capsule->setAsGlobal();
             $capsule->bootEloquent();
@@ -55,6 +56,7 @@ class DbConnection
             }
             return false;
         } catch (\Exception $e) {
+            var_dump($e->getMessage());
             return false;
         }
 
@@ -98,7 +100,7 @@ class DbConnection
     public static function massInsert(InsertToTableRequests $insertToTableRequests)
     {
         $model = new TempModel();
-        $model->overideTableName($insertToTableRequests->tableName);
+        $model->overideTableName($insertToTableRequests->name);
 
         //Iterate through all columns, appending the props and values;
         foreach ($insertToTableRequests->columns as $property) {

@@ -75,7 +75,7 @@ class FakerController extends Controller
                 throw new \Exception('Unable to connect to your database, please connect again');
             }
         } catch (\Exception $exception) {
-            return $response->withJson(['error' => $exception->getMessage()], 400);
+            return $response->withJson(['error' => $exception->getMessage(),'trace' => $exception->getTrace()], 400);
         }
     }
 }

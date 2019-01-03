@@ -3,14 +3,24 @@ import DatabaseConnectionInformationForm from "./components/databaseConnectionIn
 import TablesColumnsSelectionCard from "./components/tablesColumnsSelectionCard";
 import ColumnDataSelectionFormCard from "./components/columnDataSelectionFormCard";
 import HeaderSection from "./components/sections/HeaderSection";
+import Error from "./components/error";
 import axios from "axios";
-
 import config from "./config";
+
 class App extends Component {
   state = {
     dbStructure: null,
     fakerTypes: null,
-    selectedTable: null
+    selectedTable: null,
+    error: null
+  };
+
+  setError = error => {
+    if (!error) {
+      this.setState({ error: null });
+      return;
+    }
+    this.setState({ error });
   };
 
   selectTable = selectedTable => {
@@ -48,9 +58,13 @@ class App extends Component {
     //process form submission here
     //done submitting, set submitting to false
     try {
+      this.setError(false);
       let response = await axios.post(
         config.api_url + "readDatabase",
-        dbFormValues
+        dbFormValues,
+        {
+          withCredentials: true
+        }
       );
       console.log(response.data);
       console.log("values", dbFormValues);
@@ -59,6 +73,7 @@ class App extends Component {
       return;
     } catch (exception) {
       console.log(exception);
+      this.setError(exception.message);
       setSubmitting(false);
     }
   };
@@ -88,6 +103,7 @@ class App extends Component {
             fakerTypes={this.state.fakerTypes}
             handleRemoveColumn={this.inputColumnChange}
             onChangeSetFakerType={this.setFakerType}
+            setError={this.setError}
           />
         </div>
       </div>
@@ -98,6 +114,7 @@ class App extends Component {
     return (
       <div className="container">
         <HeaderSection />
+        <Error error={this.state.error} />
         <DatabaseConnectionInformationForm
           submitAction={this.handleDbFormSubmit}
         />

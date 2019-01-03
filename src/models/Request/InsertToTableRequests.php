@@ -18,7 +18,7 @@ class InsertToTableRequests
     /**
      * @var string $tableName
      */
-    public $tableName;
+    public $name;
 
     /**
      * @var ColumnFakerType[] $columns

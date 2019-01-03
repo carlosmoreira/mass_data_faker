@@ -26,6 +26,8 @@ class DbConnectionPropertiesRequest
 
     public $db_password;
 
+    public $db_port = 3306;
+
     public function __construct(Request $request)
     {
         $this->fillProperties($request->getParsedBody());

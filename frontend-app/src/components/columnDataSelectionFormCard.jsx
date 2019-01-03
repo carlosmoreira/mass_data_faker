@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Config from "../config";
+import axios from "axios";
 
 class ColumnDataSelectionFormCard extends Component {
   state = {};
@@ -18,11 +20,21 @@ class ColumnDataSelectionFormCard extends Component {
     );
   }
 
-  submitFakerValues() {
+  submitFakerValues = async () => {
     let request = { ...this.props.selectedTable };
-    request.columns = request.columns.filter(column => column.isChecked);
-    console.log("request payload: ", request);
-  }
+    request.columns = request.columns.filter(
+      column => column.isChecked && !column.hasAutoIncrement
+    );
+    try {
+      let response = await axios.post(Config.api_url + "create", request, {
+        withCredentials: true
+      });
+      console.log("response", response.data);
+    } catch (error) {
+      console.log(error);
+      console.log(error.message);
+    }
+  };
 
   showFakerSelectOptions(column) {
     let { fakerTypes, onChangeSetFakerType } = this.props;

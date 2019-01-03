@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 class HeaderSection extends Component {
-  state = {};
   render() {
     return (
       <div className="row">

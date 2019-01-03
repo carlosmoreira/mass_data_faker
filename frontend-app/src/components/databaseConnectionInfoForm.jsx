@@ -2,15 +2,20 @@ import React, { Component } from "react";
 import { Formik, FormikProps, Form, Field } from "formik";
 
 class DatabaseConnectionInformationForm extends Component {
+  showSpinner = spinning => {
+    if (spinning) return <i className="fa fa-spinner fa-spin" />;
+    return null;
+  };
   render() {
     return (
       <Formik
         initialValues={{
-          db_type: "",
-          db_host: "",
-          db_username: "",
-          db_password: "",
-          db_databaseName: ""
+          db_type: "mysql",
+          db_host: "localhost",
+          db_databaseName: "golotus_old",
+          db_username: "homestead",
+          db_password: "secret",
+          db_port: "33060"
         }}
         validate={values => {
           let errors = [];
@@ -79,13 +84,22 @@ class DatabaseConnectionInformationForm extends Component {
                         />
                         {/* {errors.email && touched.email && <div>{errors.email}</div>} */}
                       </div>
+                      <div className="col-md-2">
+                        <label htmlFor="database">Port</label>
+                        <Field
+                          type="text"
+                          className="form-control"
+                          name="db_port"
+                        />
+                        {/* {errors.email && touched.email && <div>{errors.email}</div>} */}
+                      </div>
                       <div className="col-md-2 pt-4">
                         <button
                           className="btn btn-primary"
                           type="submit"
                           disabled={isSubmitting}
                         >
-                          Submit
+                          Submit {this.showSpinner(isSubmitting)}
                         </button>
                       </div>
                     </div>
