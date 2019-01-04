@@ -3,8 +3,6 @@ import Config from "../config";
 import axios from "axios";
 
 class ColumnDataSelectionFormCard extends Component {
-  state = {};
-
   checkedColumns() {
     if (!this.props.selectedTable) return [];
     return this.props.selectedTable.columns.filter(column => column.isChecked);
@@ -73,6 +71,7 @@ class ColumnDataSelectionFormCard extends Component {
   }
 
   render() {
+    let { selectedTable } = this.props;
     if (this.checkedColumns() < 1) {
       return (
         <p className="alert alert-warning">
@@ -95,11 +94,33 @@ class ColumnDataSelectionFormCard extends Component {
                 type="text"
                 className="form-control mx-3"
                 id="total_rows"
+                onChange={event =>
+                  this.props.onChangeDataRowInfo("text", "rows", event)
+                }
+                value={
+                  selectedTable.props && selectedTable.props.rows
+                    ? selectedTable.props.rows
+                    : ""
+                }
               />
             </div>
             <div className="">
               <label htmlFor="delete_prev_data">
-                <input type="checkbox" id="delete_prev_data" /> Truncate Tables
+                <input
+                  type="checkbox"
+                  id="delete_prev_data"
+                  onChange={event =>
+                    this.props.onChangeDataRowInfo(
+                      "checkbox",
+                      "truncate",
+                      event
+                    )
+                  }
+                  checked={
+                    selectedTable.props ? selectedTable.props.truncate : false
+                  }
+                />{" "}
+                Truncate Tables
               </label>
             </div>
           </div>

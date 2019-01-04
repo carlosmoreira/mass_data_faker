@@ -29,6 +29,7 @@ class App extends Component {
         column.isChecked = true;
       }
     });
+    selectedTable.props = { rows: "1", truncate: false };
     this.setState({ selectedTable });
   };
 
@@ -66,8 +67,6 @@ class App extends Component {
           withCredentials: true
         }
       );
-      console.log(response.data);
-      console.log("values", dbFormValues);
       this.setState({ ...response.data });
       setSubmitting(false);
       return;
@@ -76,6 +75,22 @@ class App extends Component {
       this.setError(exception.message);
       setSubmitting(false);
     }
+  };
+  //
+  onChangeDataRowInfo = (type, key, event) => {
+    let value = null;
+    switch (type) {
+      case "text":
+        value = event.target.value;
+        break;
+      case "checkbox":
+        value = event.target.checked;
+        break;
+    }
+    let selectedTable = { ...this.state.selectedTable };
+    if (!selectedTable.props) selectedTable.props = {};
+    selectedTable.props[key] = value;
+    this.setState({ selectedTable });
   };
 
   renderTableInformation = () => {
@@ -103,6 +118,7 @@ class App extends Component {
             fakerTypes={this.state.fakerTypes}
             handleRemoveColumn={this.inputColumnChange}
             onChangeSetFakerType={this.setFakerType}
+            onChangeDataRowInfo={this.onChangeDataRowInfo}
             setError={this.setError}
           />
         </div>
