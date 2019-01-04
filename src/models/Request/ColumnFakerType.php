@@ -11,9 +11,9 @@ namespace src\models\Request;
 
 class ColumnFakerType
 {
-    public $columnName;
+    public $name;
 
     public $value;
 
-    public $fakerType;
+    public $faker;
 }
