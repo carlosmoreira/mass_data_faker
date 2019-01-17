@@ -1,8 +1,18 @@
 import React, { Component } from "react";
 import Config from "../config";
 import axios from "axios";
+import swal from "sweetalert";
 
 class ColumnDataSelectionFormCard extends Component {
+  state = {
+    loading: false
+  };
+
+  showSpinner = () => {
+    if (this.state.loading) return <i className="fa fa-spinner fa-spin" />;
+    return null;
+  };
+
   checkedColumns() {
     if (!this.props.selectedTable) return [];
     return this.props.selectedTable.columns.filter(column => column.isChecked);
@@ -24,14 +34,21 @@ class ColumnDataSelectionFormCard extends Component {
       column => column.isChecked && !column.hasAutoIncrement
     );
     try {
+      this.setState({ loading: true });
       let response = await axios.post(Config.api_url + "create", request, {
         withCredentials: true
       });
-      console.log("response", response.data);
+      swal("Check your DB!", "Data has been inserted successfully!", "success");
     } catch (error) {
       console.log(error);
-      console.log(error.message);
+      console.log(error.response);
+      let errorMessage = "Server Error";
+      if (error.response && error.response.data.error) {
+        errorMessage = error.response.data.error;
+      }
+      swal("Error: " + error.message, errorMessage, "error");
     }
+    this.setState({ loading: false });
   };
 
   showFakerSelectOptions(column) {
@@ -148,8 +165,9 @@ class ColumnDataSelectionFormCard extends Component {
           <button
             onClick={() => this.submitFakerValues()}
             className="btn btn-primary float-right"
+            disabled={this.state.loading}
           >
-            Create!
+            Create! {this.showSpinner()}
           </button>
         </div>
       </div>
