@@ -67,6 +67,7 @@ class ColumnDataSelectionFormCard extends Component {
         name="ctrl1"
         id="ctr1"
         className="form-control"
+        disabled={column.hasManualOffer}
       >
         <option value="">Select...</option>
         {Object.keys(fakerTypes).map((fakerType, index) => (
@@ -85,6 +86,40 @@ class ColumnDataSelectionFormCard extends Component {
         ))}
       </select>
     );
+  }
+  handleManualInputChange(column) {
+    return null;
+  }
+  showManualOption(column) {
+    if (column.hasAutoIncrement) {
+      return;
+    }
+
+    let manualOfferHtml = [
+      <label htmlFor="isManual">
+        <input
+          onChange={() => this.props.updateColumnManual(column)}
+          type="checkbox"
+          id="isManual"
+          name="isManual"
+        />{" "}
+        Manual Value?
+      </label>
+    ];
+
+    if (column.hasManualOffer) {
+      manualOfferHtml.push(
+        <input
+          onChange={event => this.props.updateColumnManualValue(column, event)}
+          value={column.manualOfferValue}
+          type="text"
+          className="form-control"
+          placeholder="Enter Value"
+        />
+      );
+    }
+
+    return manualOfferHtml;
   }
 
   render() {
@@ -153,6 +188,7 @@ class ColumnDataSelectionFormCard extends Component {
                       <span>{column.name}</span>
                     </h5>
                     {this.showFakerSelectOptions(column)}
+                    {this.showManualOption(column)}
                     {this.showRemoveIcon(column)}
                   </div>
                 </div>

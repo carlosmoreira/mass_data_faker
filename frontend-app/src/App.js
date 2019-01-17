@@ -43,6 +43,24 @@ class App extends Component {
     this.setState({ selectedTable });
   };
 
+  updateColumnManual = column => {
+    let selectedTable = { ...this.state.selectedTable };
+    let foundColumn = selectedTable.columns.find(
+      columnItr => columnItr.name === column.name
+    );
+    foundColumn.hasManualOffer = !foundColumn.hasManualOffer;
+    foundColumn.manualOfferValue = "";
+    this.setState({ selectedTable });
+  };
+
+  updateColumnManualValue = (column, event) => {
+    let selectedTable = { ...this.state.selectedTable };
+    let foundColumn = selectedTable.columns.find(
+      columnItr => columnItr.name === column.name
+    );
+    foundColumn.manualOfferValue = event.target.value;
+    this.setState({ selectedTable });
+  };
   setFakerType = (column, event) => {
     let selectedTable = { ...this.state.selectedTable };
     let foundColumn = selectedTable.columns.find(
@@ -120,6 +138,8 @@ class App extends Component {
             onChangeSetFakerType={this.setFakerType}
             onChangeDataRowInfo={this.onChangeDataRowInfo}
             setError={this.setError}
+            updateColumnManual={this.updateColumnManual}
+            updateColumnManualValue={this.updateColumnManualValue}
           />
         </div>
       </div>
