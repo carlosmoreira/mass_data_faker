@@ -49,7 +49,7 @@ class App extends Component {
       columnItr => columnItr.name === column.name
     );
     foundColumn.hasManualOffer = !foundColumn.hasManualOffer;
-    foundColumn.manualOfferValue = "";
+    foundColumn.manualValue = "";
     this.setState({ selectedTable });
   };
 
@@ -58,7 +58,7 @@ class App extends Component {
     let foundColumn = selectedTable.columns.find(
       columnItr => columnItr.name === column.name
     );
-    foundColumn.manualOfferValue = event.target.value;
+    foundColumn.manualValue = event.target.value;
     this.setState({ selectedTable });
   };
   setFakerType = (column, event) => {

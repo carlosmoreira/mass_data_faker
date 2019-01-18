@@ -111,7 +111,7 @@ class ColumnDataSelectionFormCard extends Component {
       manualOfferHtml.push(
         <input
           onChange={event => this.props.updateColumnManualValue(column, event)}
-          value={column.manualOfferValue}
+          value={column.manualValue}
           type="text"
           className="form-control"
           placeholder="Enter Value"

@@ -104,8 +104,8 @@ class DbConnection
 
         //Iterate through all columns, appending the props and values;
         foreach ($insertToTableRequests->columns as $property) {
-            if ($property->value) {
-                $model->{$property->name} = $property->value; //Value: Is a string directly from requset, that we dont need to generate a faker value
+            if ($property->manualValue) {
+                $model->{$property->name} = $property->manualValue; //Value: Is a string directly from requset, that we dont need to generate a faker value
             } else {
                 $model->{$property->name} = FakerValueHelper::createValue($property->faker);
             }

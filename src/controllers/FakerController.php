@@ -41,21 +41,6 @@ class FakerController extends Controller
 
     }
 
-
-    /**
-     * When the db is created, pass back an array of faker types
-     */
-
-    /**
-     * What will we do?
-     *  - We will take the table name and convert it to an Eloquent ORM
-     *  - We will go through all the columns and attach them to the class
-     *      - Setting it a value corresponding to the faker type selected
-     *  - We will wrap this in a 'Commit' and attempt to save
-     *  - If valid we will return a 'Success' (400)
-     */
-
-
     public function create(Request $request, Response $response)
     {
         try {
