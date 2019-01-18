@@ -96,11 +96,11 @@ class ColumnDataSelectionFormCard extends Component {
     }
 
     let manualOfferHtml = [
-      <label htmlFor="isManual">
+      <label htmlFor={`manual-${column.name}`}>
         <input
           onChange={() => this.props.updateColumnManual(column)}
           type="checkbox"
-          id="isManual"
+          id={`manual-${column.name}`}
           name="isManual"
         />{" "}
         Manual Value?
