@@ -25,4 +25,9 @@ class InsertToTableRequests
      */
     public $columns;
 
+    /**
+     * @var TableProps $props
+     */
+    public $props;
+
 }

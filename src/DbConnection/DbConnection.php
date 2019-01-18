@@ -99,6 +99,26 @@ class DbConnection
 
     public static function massInsert(InsertToTableRequests $insertToTableRequests)
     {
+        if ($insertToTableRequests->props->rows < 1) {
+            throw new \Exception("Rows must be greater than 0");
+        }
+
+        if ($insertToTableRequests->props->truncate) {
+            $result = self::$capsule->getConnection()->getPdo()->query("truncate table {$insertToTableRequests->name}")->execute();
+            if(!$result)
+                throw new \Exception("Error, unable to truncate table");
+        }
+
+        for ($i = 0; $i < $insertToTableRequests->props->rows; $i++) {
+            self::insertRow($insertToTableRequests);
+        }
+    }
+
+    /**
+     * @param InsertToTableRequests $insertToTableRequests
+     */
+    private static function insertRow(InsertToTableRequests $insertToTableRequests)
+    {
         $model = new TempModel();
         $model->overideTableName($insertToTableRequests->name);
 
@@ -109,13 +129,10 @@ class DbConnection
             } else {
                 $model->{$property->name} = FakerValueHelper::createValue($property->faker);
             }
+
+
         }
-
-        /**
-         * @todo:Check if saved otherwise throw exception
-         */
         $model->save();
-
     }
 
 }
